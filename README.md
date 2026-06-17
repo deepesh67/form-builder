@@ -2,12 +2,20 @@
 
 A modern full-stack web application that enables administrators to create, customize, publish, and manage dynamic forms without writing code. The platform includes a drag-and-drop form builder, real-time preview, response management, file uploads, analytics, and a fully responsive user interface.
 
+---
+
 ## Admin Credentials
+
+### Primary Admin
 
 **Email:** `deepesh4938@gmail.com`
 **Password:** `1234567`
+
+### Secondary Admin
+
 **Email:** `khushijangid7737@gmail.com`
 **Password:** `123456`
+
 ---
 
 ## Features
@@ -93,11 +101,9 @@ CLIENT_URL=http://localhost:5173
 form-builder/
 │
 ├── client/
-│   │
 │   ├── public/
 │   │
 │   ├── src/
-│   │   │
 │   │   ├── api/
 │   │   │   └── axios.js
 │   │   │
@@ -144,9 +150,7 @@ form-builder/
 │   └── vite.config.js
 │
 ├── server/
-│   │
 │   ├── src/
-│   │   │
 │   │   ├── config/
 │   │   │   └── db.js
 │   │   │
@@ -199,7 +203,7 @@ form-builder/
 
 ## Developer
 
-Deepesh
+**Deepesh**
 
 Email: [deepesh4938@gmail.com](mailto:deepesh4938@gmail.com)
 GitHub: https://github.com/deepesh67
