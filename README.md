@@ -1,90 +1,204 @@
-# No-Code Dynamic Form Builder (MERN)
+# Full-Stack Dynamic Form Builder
 
-A powerful, production-ready full-stack application that allows admins to build dynamic forms via drag-and-drop, customize themes, and analyze user submissions.
+A modern full-stack web application that enables administrators to create, customize, publish, and manage dynamic forms without writing code. The platform includes a drag-and-drop form builder, real-time preview, response management, file uploads, analytics, and a fully responsive user interface.
+
+## Admin Credentials
+
+**Email:** `deepesh4938@gmail.com`
+**Password:** `1234567`
+
+---
 
 ## Features
-- **Admin Authentication**: JWT-based login/signup with role-based protection.
-- **Dynamic Builder**: Drag-and-drop interface powered by `@dnd-kit`.
-- **Field Types**: Text, Email, Number, Password, Textarea, Dropdown, Radio, Checkbox, Date, File.
-- **Live Preview**: Real-time preview of form layouts and themes.
-- **Public Forms**: Unique URLs for each form for public submission.
-- **Analytics**: Dashboard to view submissions and export data to CSV.
-- **Premium UI**: Modern design with Tailwind CSS, Glassmorphism, and Dark/Light mode support.
 
-## Tech Stack
-- **Frontend**: React, Vite, Tailwind CSS, dnd-kit, React Hook Form, Axios, Lucide React.
-- **Backend**: Node.js, Express, MongoDB (Local with Compass), JWT, Mongoose.
-
----
-
-## Setup Instructions
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v16+)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community) installed and running on `localhost:27017`.
-- [MongoDB Compass](https://www.mongodb.com/products/compass) for database management.
-
-### 1. Backend Setup
-1. Open a terminal and navigate to the server folder:
-   ```bash
-   cd server
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file (one has been provided for you):
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/formbuilder
-   JWT_SECRET=yourSuperSecretKey
-   CLIENT_URL=http://localhost:5173
-   ```
-4. (Optional) Seed the database with an admin user and demo form:
-   ```bash
-   npm run seed
-   ```
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-### 2. Frontend Setup
-1. Open a new terminal and navigate to the client folder:
-   ```bash
-   cd client
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite dev server:
-   ```bash
-   npm run dev
-   ```
-4. Access the app at `http://localhost:5173`.
+* Drag-and-Drop Form Builder
+* Dynamic Form Creation
+* Real-Time Form Preview
+* File Upload Support
+* Signature Field Support
+* Required Field Validation
+* Duplicate Submission Prevention
+* Response Management
+* CSV Export
+* Analytics Dashboard
+* JWT Authentication
+* Role-Based Access Control
+* Fully Responsive Design
 
 ---
 
-## Folder Structure
-```text
-/client
-  /src
-    /api          # Axios instance
-    /components   # Reusable UI (Builder, Navbar, etc.)
-    /context      # Auth management
-    /pages        # Route pages (Dashboard, PublicForm, etc.)
-/server
-  /src
-    /config       # Database config
-    /controllers  # Route logic
-    /models       # Mongoose schemas
-    /routes       # API endpoints
-    /middleware   # JWT & Role protection
+## Technology Stack
+
+### Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* React Hook Form
+* Axios
+* DnD Kit
+* Lucide React
+
+### Backend
+
+* Node.js
+* Express.js
+* JWT Authentication
+* REST APIs
+
+### Database
+
+* MongoDB
+* Mongoose
+
+---
+
+## Installation
+
+### Backend Setup
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+### Frontend Setup
+
+```bash
+cd client
+npm install
+npm run dev
 ```
 
 ---
 
-## Sample Admin Credentials (if seeded)
-- **Email**: `admin@example.com`
-- **Password**: `Admin@123`
+## Environment Variables
+
+Create a `.env` file inside the server folder:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/formbuilder
+JWT_SECRET=yourSecretKey
+CLIENT_URL=http://localhost:5173
+```
+
+---
+
+## Project Structure
+
+```text
+form-builder/
+│
+├── client/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   │
+│   │   ├── api/
+│   │   │   └── axios.js
+│   │   │
+│   │   ├── components/
+│   │   │   ├── builder/
+│   │   │   │   ├── Canvas.jsx
+│   │   │   │   ├── FieldSettings.jsx
+│   │   │   │   ├── Preview.jsx
+│   │   │   │   ├── ResponsesTable.jsx
+│   │   │   │   └── Sidebar.jsx
+│   │   │   │
+│   │   │   ├── fields/
+│   │   │   │   └── SignaturePad.jsx
+│   │   │   │
+│   │   │   └── shared/
+│   │   │       └── Navbar.jsx
+│   │   │
+│   │   ├── constants/
+│   │   │   └── fieldTypes.js
+│   │   │
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── admin/
+│   │   │   │   ├── Builder.jsx
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   └── Responses.jsx
+│   │   │   │
+│   │   │   ├── auth/
+│   │   │   │   ├── Login.jsx
+│   │   │   │   └── Register.jsx
+│   │   │   │
+│   │   │   └── public/
+│   │   │       ├── LandingPage.jsx
+│   │   │       ├── PublicForm.jsx
+│   │   │       └── Success.jsx
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/
+│   │
+│   ├── src/
+│   │   │
+│   │   ├── config/
+│   │   │   └── db.js
+│   │   │
+│   │   ├── controllers/
+│   │   │   ├── authController.js
+│   │   │   ├── formController.js
+│   │   │   └── responseController.js
+│   │   │
+│   │   ├── middleware/
+│   │   │   ├── auth.js
+│   │   │   └── role.js
+│   │   │
+│   │   ├── models/
+│   │   │   ├── User.js
+│   │   │   ├── Form.js
+│   │   │   └── Response.js
+│   │   │
+│   │   ├── routes/
+│   │   │   ├── auth.js
+│   │   │   ├── form.js
+│   │   │   └── response.js
+│   │   │
+│   │   ├── seed.js
+│   │   └── index.js
+│   │
+│   ├── package.json
+│   └── .env
+│
+├── README.md
+├── package.json
+└── package-lock.json
+```
+
+---
+
+## Key Highlights
+
+* Full-Stack Architecture
+* No-Code Form Creation
+* Drag-and-Drop Builder
+* Dynamic Form Management
+* File Upload & Preview
+* CSV Export Functionality
+* Secure JWT Authentication
+* Responsive Design
+* Analytics Dashboard
+* Production-Ready Structure
+
+---
+
+## Developer
+
+Deepesh
+
+Email: [deepesh4938@gmail.com](mailto:deepesh4938@gmail.com)
+GitHub: https://github.com/deepesh67
