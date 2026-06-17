@@ -6,7 +6,6 @@ A modern full-stack web application that enables administrators to create, custo
 
 **Email:** `deepesh4938@gmail.com`
 **Password:** `1234567`
-
 **Email:** `khushijangid7737@gmail.com`
 **Password:** `123456`
 ---
