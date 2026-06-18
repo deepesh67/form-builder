@@ -58,6 +58,7 @@ const Builder = () => {
 
   const [showLibrary, setShowLibrary] = useState(false);
   const [showInspector, setShowInspector] = useState(false);
+  const [deleteFieldId, setDeleteFieldId] = useState(null); // ID of field to be deleted
 
   useEffect(() => {
     if (id && id !== 'new' && id !== 'undefined') fetchForm();
@@ -148,6 +149,15 @@ const Builder = () => {
     } finally {
       setIsSaving(false);
     }
+  };
+  const confirmDeleteField = () => {
+    if (!deleteFieldId) return;
+    setForm(prev => ({
+      ...prev,
+      fields: prev.fields.filter(f => (f.id || f._id) !== deleteFieldId)
+    }));
+    if (selectedFieldId === deleteFieldId) setSelectedFieldId(null);
+    setDeleteFieldId(null);
   };
 
   const handleDragEnd = (event) => {
@@ -292,10 +302,7 @@ const Builder = () => {
                             if (window.innerWidth < 1280) setShowInspector(true);
                           }}
                           selectedId={selectedFieldId}
-                          onRemove={(fid) => {
-                            setForm(f => ({ ...f, fields: f.fields.filter(field => (field.id || field._id) !== fid) }));
-                            if(selectedFieldId === fid) setSelectedFieldId(null);
-                          }}
+                          onRemove={(fid) => setDeleteFieldId(fid)}
                         />
                       </SortableContext>
                     </DndContext>
@@ -317,6 +324,7 @@ const Builder = () => {
                 <FieldSettings
                   field={selectedField}
                   onUpdate={(updates) => updateField(selectedField.id || selectedField._id, updates)}
+                  onDelete={() => setDeleteFieldId(selectedField.id || selectedField._id)}
                 />
               ) : (
                 <div className="h-full flex flex-col items-center justify-center text-center p-8 opacity-20">
@@ -439,6 +447,54 @@ const Builder = () => {
           </div>
         )}
       </div>
+
+      {/* Confirmation Modal */}
+      <AnimatePresence>
+        {deleteFieldId && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDeleteFieldId(null)}
+              className="absolute inset-0 bg-[#020617]/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-sm glass-card p-8 rounded-[2rem] border border-red-500/20 shadow-2xl shadow-red-500/5 overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
+              
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 mb-2">
+                  <X size={32} />
+                </div>
+                <h3 className="text-xl font-black text-white uppercase tracking-tight">Delete Field?</h3>
+                <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                  This field and all its configurations will be permanently removed from the form. This action cannot be undone.
+                </p>
+              </div>
+
+              <div className="flex gap-3 mt-8">
+                <button
+                  onClick={() => setDeleteFieldId(null)}
+                  className="flex-1 h-12 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmDeleteField}
+                  className="flex-1 h-12 rounded-xl bg-red-500 text-white text-xs font-bold shadow-lg shadow-red-500/20 hover:bg-red-600 transition-all uppercase tracking-widest"
+                >
+                  Delete
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

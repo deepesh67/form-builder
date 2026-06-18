@@ -9,7 +9,7 @@ const InputGroup = ({ label, children }) => (
   </div>
 );
 
-const FieldSettings = ({ field, onUpdate }) => {
+const FieldSettings = ({ field, onUpdate, onDelete }) => {
   const [activeTab, setActiveTab] = useState('content'); // content, style
 
   const handleUpdate = (path, value) => {
@@ -209,11 +209,11 @@ const FieldSettings = ({ field, onUpdate }) => {
       {/* Delete Component Button */}
       <div className="p-8 border-t border-white/5">
         <button 
-          onClick={() => { /* parent handles removal */ }}
+          onClick={onDelete}
           className="w-full h-14 rounded-[1.5rem] bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 group"
         >
           <Trash2 size={16} className="group-hover:scale-110 transition-transform" /> 
-          Relinquish Component
+          Delete Field
         </button>
       </div>
     </div>

@@ -85,10 +85,7 @@ const Login = () => {
             </div>
 
             <div className="space-y-2">
-              <div className="flex justify-between items-center px-1">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Password</label>
-                <button type="button" className="text-xs font-bold text-brand-500 hover:underline">Forgot?</button>
-              </div>
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Password</label>
               <div className="relative group">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-500 transition-colors" size={20} />
                 <input
